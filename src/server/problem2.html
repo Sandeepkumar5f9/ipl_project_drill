@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Highchart Example</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <style>
+        #chart-container {
+            margin: 0 auto;
+            width: 600px;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div id="chart-container" style="width: 600px; height: 400px;"></div>
+
+    <script>
+        // JSON data
+        const jsonData = {
+            "2008": {
+                "Kolkata Knight Riders": 6,
+                "Chennai Super Kings": 9,
+                "Delhi Daredevils": 7,
+                "Royal Challengers Bangalore": 4,
+                "Rajasthan Royals": 13,
+                "Kings XI Punjab": 10,
+                "Deccan Chargers": 2,
+                "Mumbai Indians": 7
+            },
+        };
+
+        // Extracting data for the chart
+        const categories = Object.keys(jsonData);
+        const seriesData = Object.keys(jsonData[Object.keys(jsonData)[0]]).map(team => ({
+            name: team,
+            data: categories.map(year => jsonData[year][team])
+        }));
+
+        // Creating chart
+        Highcharts.chart('chart-container', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Team Performance Over Years'
+            },
+            xAxis: {
+                categories: categories,
+                title: {
+                    text: 'Year'
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Number of Matches Won'
+                }
+            },
+            series: seriesData
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Overs Econame Bowler</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <style>
+        #chart-container {
+            margin: 0 auto;
+            width: 600px;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div id="chart-container"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const jsonData = {
+                "bowler": "JJ Bumrah",
+                "economyRate": 6.75
+            };
+
+            // Create the chart
+            Highcharts.chart('chart-container', {
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Super Overs Econame Bowler'
+                },
+                xAxis: {
+                    categories: ['Bowler'],
+                    title: {
+                        text: null
+                    }
+                },
+                yAxis: {
+                    title: {
+                        text: 'Economy Rate'
+                    }
+                },
+                series: [{
+                    name: 'Economy Rate',
+                    data: [jsonData.economyRate]
+                }],
+                plotOptions: {
+                    column: {
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.y:.2f}'
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

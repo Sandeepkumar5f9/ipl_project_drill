@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Wins Toss and Match</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <style>
+        #chart-container {
+            margin: 0 auto;
+            width: 600px;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div id="chart-container" style="width: 600px; height: 400px;"></div>
+
+    <script>
+        // JSON data
+        const jsonData = [
+            "Rising Pune Supergiant: 5 times",
+            "Kolkata Knight Riders: 44 times",
+            "Kings XI Punjab: 28 times",
+            "Royal Challengers Bangalore: 35 times",
+            "Sunrisers Hyderabad: 17 times",
+            "Mumbai Indians: 48 times",
+            "Gujarat Lions: 10 times",
+            "Delhi Daredevils: 33 times",
+            "Chennai Super Kings: 42 times",
+            "Rajasthan Royals: 34 times",
+            "Deccan Chargers: 19 times",
+            "Kochi Tuskers Kerala: 4 times",
+            "Pune Warriors: 3 times",
+            "Rising Pune Supergiants: 3 times"
+        ];
+
+        // Extract data for the chart
+        const categories = [];
+        const data = [];
+
+        jsonData.forEach(item => {
+            const [team, count] = item.split(': ');
+            categories.push(team);
+            data.push(parseInt(count));
+        });
+
+        // Create the chart
+        Highcharts.chart('chart-container', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Team Wins Toss and Match'
+            },
+            xAxis: {
+                categories: categories,
+                title: {
+                    text: 'Team'
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Number of Times Winning Toss and Match'
+                }
+            },
+            series: [{
+                name: 'Wins',
+                data: data
+            }]
+        });
+    </script>
+</body>
+</html>

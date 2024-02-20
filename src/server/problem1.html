@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Highchart Example</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <style>
+        #chart-container {
+            margin: 0 auto;
+            width: 600px;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div id="chart-container" style="width: 600px; height: 400px;"></div>
+
+    <script>
+        // JSON data
+        const jsonData = {
+            '2008': { player: 'SE Marsh', count: 5 },
+            '2009': { player: 'YK Pathan', count: 3 },
+            '2010': { player: 'SR Tendulkar', count: 4 },
+            '2011': { player: 'CH Gayle', count: 6 },
+            '2012': { player: 'CH Gayle', count: 5 },
+            '2013': { player: 'MEK Hussey', count: 5 },
+            '2014': { player: 'GJ Maxwell', count: 4 },
+            '2015': { player: 'DA Warner', count: 4 },
+            '2016': { player: 'V Kohli', count: 5 },
+            '2017': { player: 'BA Stokes', count: 3 }
+        };
+
+        // Prepare data for the chart
+        const categories = Object.keys(jsonData);
+        const data = Object.values(jsonData).map(item => item.count);
+
+        // Create the chart
+        Highcharts.chart('chart-container', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Matches for Year'
+            },
+            xAxis: {
+                categories: categories,
+                title: {
+                    text: 'Year'
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Number of Times Player of the Year'
+                }
+            },
+            series: [{
+                name: 'Player',
+                data: data
+            }]
+        });
+    </script>
+</body>
+</html>
